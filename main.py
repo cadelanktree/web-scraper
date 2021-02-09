@@ -1,5 +1,6 @@
 """ Code inspired by: https://www.youtube.com/watch?v=Cb_5A6geOUw """
 #import modules
+import time
 import string
 import requests
 import pandas as pd
@@ -17,6 +18,7 @@ def scrape_stock_az(Letter):
 	soup = BeautifulSoup(page.text, 'html.parser')
 	odd_rows = soup.find_all('tr', attrs={'class':'ts0'})
 	even_rows = soup.find_all('tr', attrs={'class':'ts1'})
+	time.sleep(1)
 
 	for i in odd_rows:
 		row = i.find_all('td')
@@ -32,7 +34,6 @@ def scrape_stock_az(Letter):
 
 
 #Get a list of every alphabet letter
-
 string.ascii_uppercase
 
 for char in string.ascii_uppercase:
@@ -46,8 +47,10 @@ data['company_ticker'] = temp_ticker
 #Clean data
 data = data[data['company_name'] != '']
 
-#Show panda dataframe
+#Show pandas dataframe
 print(data)
+
+
 
 
 
